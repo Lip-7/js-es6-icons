@@ -1,4 +1,3 @@
-
 function app() {
     document.querySelector('button.navbar-toggler').addEventListener('click', () => {
         document.querySelector('.navbar-collapse').classList.toggle('collapsed');
@@ -118,11 +117,12 @@ function app() {
             color: 'blue'
         }
     ];
+    const typeList = ['all','animal', 'vegetable', 'user']
+    changeColorObjList(icons, typeList)
     for (let icon of icons) {
         const newCard = drawCard(icon);
         document.querySelector('.cards').append(newCard);
     }
-    const typeList = ['all','animal', 'vegetable', 'user']
     const options = generateOptions(typeList);
     const filterSelect = document.getElementById('filter');
     for (let opt of options) {
@@ -161,5 +161,3 @@ function app() {
     })  
 }
 app();
-
-

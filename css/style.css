@@ -13,6 +13,7 @@ select,option{
 }
 .cards{
     padding: 2rem 0rem;
+    max-width: 915px;
 }
 .card{
     width: 12rem;

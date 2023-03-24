@@ -1,3 +1,5 @@
+/* switch the visibility removing d-none from the first arg and giving it to the second one.
+The args must be strings and must match with id of element to work with*/
 function switchVisibility(toShow,toHide){
     const content1 = document.getElementById(toShow);
     content1.classList.toggle('d-none');
@@ -6,14 +8,17 @@ function switchVisibility(toShow,toHide){
       content2.classList.toggle('d-none');
     }
 };
+/* generate an element (input the type as arg), with a content in a wrapper */
 function generateElementsByArray(elementType, content, wrapper){
   const singleElement = document.createElement(elementType);
   singleElement.innerText = content;
   wrapper.appendChild(singleElement);
 }
-function randomNumber(max) {
-  return Math.round(Math.random() * (max - 1)) + 1;
+/* get a random number from min to a max */
+function randomNumber(min, max) {
+  return Math.round(Math.random() * (max - min)) + min;
 };
+/* generate li from a list (1st arg) and append it to a ul(2bs arg) */
 function generateLi(listIngredients, listToAppend) {
 let iterable = 0;
 const ulDestination = document.getElementById(listToAppend);
@@ -23,11 +28,13 @@ while (iterable < listIngredients.length){
     ulDestination.appendChild(ingredient);
     iterable++;
 }};
+/* reset style translate of a array of elements of html */
 function separe(buttons){
   for (let i = 0; i < buttons.length; i++){
       buttons[i].style.translate = 0;
     }
 };
+/* draw a simple card from an obj */
 function drawCard(obj){
   const newCard = document.createElement('div');
   newCard.classList.add('card');
@@ -39,7 +46,7 @@ function drawCard(obj){
   newCard.append(newIcon, cardTitle)
   return newCard
 };
-/* create a list of the object that have in common one attrivute value */
+/* create a list of the objects that have in common one attrivute value */
 function listFromObjValue(objList,attribute, value) {
   const myArray = []
   for (let obj of  objList) {
@@ -62,4 +69,30 @@ function generateOptions(list) {
       optionList.push(newOption);
   }
   return optionList;
+}
+/* create a random hex color */
+function randomHexColor() {
+  const hexValues = '0123456789ABCDEF';
+  let hexColor = '#';
+  for (let i = 0; i < 6; i++) {
+    hexColor += hexValues[randomNumber(0, 15)];
+  }
+  return hexColor;
+}
+function changeColorObjList(objlist, list) {
+  const colorlist = list.map(singletype => {
+      const newObj = {
+          type: singletype,
+          color: randomHexColor()
+      }
+      return newObj;
+  })
+  objlist.forEach(element => {
+      for (let el of colorlist) {
+          if (element.type == el.type) {
+              element.color = el.color
+          }
+      }
+  })
+  const color = randomHexColor()
 }
