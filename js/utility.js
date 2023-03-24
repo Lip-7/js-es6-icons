@@ -39,3 +39,27 @@ function drawCard(obj){
   newCard.append(newIcon, cardTitle)
   return newCard
 };
+/* create a list of the object that have in common one attrivute value */
+function listFromObjValue(objList,attribute, value) {
+  const myArray = []
+  for (let obj of  objList) {
+      if (obj[attribute] == value) {
+          myArray.push(obj);
+      }
+  }
+  return myArray;
+}
+/* from a list of strings, generate a array with an option for string */
+function generateOptions(list) {
+  const optionList = []
+  for (let i = 0; i < list.length; i++) {
+      const newOption = document.createElement('option');
+      newOption.value = list[i];
+      newOption.textContent = list[i].charAt(0).toUpperCase() + list[i].slice(1);
+      if (i == 0) {
+          newOption.selected = true;
+      }
+      optionList.push(newOption);
+  }
+  return optionList;
+}

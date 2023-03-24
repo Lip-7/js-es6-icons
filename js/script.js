@@ -118,15 +118,17 @@ function app() {
             color: 'blue'
         }
     ];
-    for (icon of icons) {
+    for (let icon of icons) {
         const newCard = drawCard(icon);
-        document.querySelector('.cards').append(newCard)
+        document.querySelector('.cards').append(newCard);
     }
-
+    const typeList = ['all','animal', 'vegetable', 'user']
+    const objByTypeList = [listFromObjValue(icons, 'type', 'animal'), listFromObjValue(icons, 'type', 'vegetable'), listFromObjValue(icons, 'type', 'user')];
+    const options = generateOptions(typeList);
+    for (let opt of options) {
+        document.getElementById('filter').appendChild(opt)
+    }
 }
 app();
 
-function generateOptions(obj) {
-    const newOption = document.createElement('option')
 
-}
