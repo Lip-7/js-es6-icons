@@ -123,11 +123,42 @@ function app() {
         document.querySelector('.cards').append(newCard);
     }
     const typeList = ['all','animal', 'vegetable', 'user']
-    const objByTypeList = [listFromObjValue(icons, 'type', 'animal'), listFromObjValue(icons, 'type', 'vegetable'), listFromObjValue(icons, 'type', 'user')];
     const options = generateOptions(typeList);
+    const filterSelect = document.getElementById('filter');
     for (let opt of options) {
-        document.getElementById('filter').appendChild(opt)
+        filterSelect.appendChild(opt);
     }
+    filterSelect.addEventListener('change', function() {
+        const selectedOption = this.value;
+        const objByTypeList = [listFromObjValue(icons, 'type', 'animal'), listFromObjValue(icons, 'type', 'vegetable'), listFromObjValue(icons, 'type', 'user')];
+        document.querySelector('.cards').innerHTML = ''
+        switch (selectedOption) {
+            case 'all' :
+                for (let icon of icons) {
+                    const newCard = drawCard(icon);
+                    document.querySelector('.cards').append(newCard);
+                }
+                break;
+            case 'animal' :
+                for (let icon of objByTypeList[0]) {
+                    const newCard = drawCard(icon);
+                    document.querySelector('.cards').append(newCard);
+                }
+                break;
+            case 'vegetable' :
+                for (let icon of objByTypeList[1]) {
+                    const newCard = drawCard(icon);
+                    document.querySelector('.cards').append(newCard);
+                }
+                break;
+            case 'user' :
+                for (let icon of objByTypeList[2]) {
+                    const newCard = drawCard(icon);
+                    document.querySelector('.cards').append(newCard);
+                }
+                break;
+        }
+    })  
 }
 app();
 
